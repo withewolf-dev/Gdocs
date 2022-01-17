@@ -10,9 +10,13 @@ import Body from "../components/Body";
 import Header from "../components/Header";
 import Login from "../components/Login";
 import axios from "axios";
+import { useRecoilState } from "recoil";
+import { docsState } from "../atoms/docs";
 
 export default function Home({ providers }) {
   const { data: session } = useSession();
+
+  const [documents, setDocuments] = useRecoilState(docsState);
 
   if (!session) return <Login providers={providers} />;
 
@@ -20,12 +24,11 @@ export default function Home({ providers }) {
 
   useEffect(() => {
     axios
-      .delete(
-        `http://localhost:3001/doc/${"15845eef-f64d-4a76-99e6-013863a36204"}`
-      )
+      .get(`http://localhost:3001/doc/${session.user[`uid`]}`)
       .then((response) => {
         // handle success
         console.log(response.data);
+        setDocuments(response.data);
       });
   }, []);
 

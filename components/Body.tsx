@@ -5,11 +5,17 @@ import { DotsVerticalIcon, FolderIcon } from "@heroicons/react/solid";
 import { v4 as uuidv4 } from "uuid";
 import { useRouter } from "next/router";
 import DocumentRow from "./DocumentRow";
+import { useRecoilState } from "recoil";
+import { docsState } from "../atoms/docs";
 
 interface Props {}
 
 const Body = () => {
   const router = useRouter();
+
+  const [documents, setDocuments] = useRecoilState(docsState);
+
+  console.log(documents, "documents");
 
   const newDoc = (e) => {
     e.preventDefault();
@@ -46,7 +52,9 @@ const Body = () => {
             <p className="mr-12">Date Created </p>
             <FolderIcon className="h-4" />
           </div>
-          <DocumentRow />
+          {documents.map((e) => (
+            <DocumentRow title={e.title} id={e._id} key={e._id} />
+          ))}
         </div>
       </section>
     </div>
