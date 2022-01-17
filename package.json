@@ -8,6 +8,7 @@
   "dependencies": {
     "@heroicons/react": "^1.0.5",
     "@types/quill": "^2.0.9",
+    "axios": "^0.24.0",
     "client": "0.0.1",
     "express": "^4.17.2",
     "next": "latest",

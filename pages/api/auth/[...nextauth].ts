@@ -10,5 +10,15 @@ export default NextAuth({
     }),
     // ...add more providers here
   ],
+  callbacks: {
+    async session({ session, token }) {
+      // session.user.tag = session.user.name
+      //   .split(" ")
+      //   .join("")
+      //   .toLocaleLowerCase();
+      session.user[`uid`] = token.sub;
+      return session;
+    },
+  },
   secret: process.env.JWT_SECRET,
 });

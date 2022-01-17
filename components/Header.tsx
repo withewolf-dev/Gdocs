@@ -1,7 +1,7 @@
 import React from "react";
 import { MenuIcon, SearchIcon } from "@heroicons/react/solid";
 import Image from "next/image";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 interface Props {}
 
@@ -33,8 +33,12 @@ const Header = (props: Props) => {
         />
       </div>
       <img
+        onClick={(e) => {
+          e.preventDefault();
+          signOut();
+        }}
         src={session.user?.image}
-        className="h-10 w-10 rounded-full object-fit"
+        className="h-10 w-10 rounded-full object-fit cursor-pointer"
       />
     </div>
   );
