@@ -82,6 +82,12 @@ const Editor = ({ id }) => {
     };
   }, [socket, quill]);
 
+  // useEffect(() => {
+  //   if (socket !== null) return;
+  //   socket.on("test", (data) => {
+  //     console.log(data);
+  //   });
+  // }, [socket]);
   const wrapperRef = useCallback((wrapper) => {
     if (wrapper == null) return;
 

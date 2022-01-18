@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { DocumentDuplicateIcon, TrashIcon } from "@heroicons/react/solid";
 import Link from "next/link";
+import io from "socket.io-client";
+import axios from "axios";
+import { socketIo } from "../pages";
+
 interface Props {}
 
 const DocumentRow = ({ title, id }) => {
+  const [triggerIo, settriggerIo] = useState(false);
+  const [socket, setsocket] = useState<any>();
+
+  useEffect(() => {
+    const s = io("http://localhost:3001/");
+    setsocket(s);
+    return () => {
+      s.disconnect();
+    };
+  }, []);
+
   const OnDelete = (e) => {
     e.stopPropagation();
-    console.log("DElete");
+    socketIo.emit("delete", id);
   };
   return (
     <Link href={`/doc/${id}`}>

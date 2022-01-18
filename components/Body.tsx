@@ -52,9 +52,10 @@ const Body = () => {
             <p className="mr-12">Date Created </p>
             <FolderIcon className="h-4" />
           </div>
-          {documents.map((e) => (
-            <DocumentRow title={e.title} id={e._id} key={e._id} />
-          ))}
+          {documents &&
+            documents.map((e) => (
+              <DocumentRow title={e.title} id={e._id} key={e._id} />
+            ))}
         </div>
       </section>
     </div>
