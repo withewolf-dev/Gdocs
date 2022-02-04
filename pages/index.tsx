@@ -5,16 +5,15 @@ import {
   useSession,
 } from "next-auth/react";
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Body from "../components/Body";
 import Header from "../components/Header";
 import Login from "../components/Login";
-import axios from "axios";
 import { useRecoilState } from "recoil";
 import { docsState } from "../atoms/docs";
 import io from "socket.io-client";
 
-export const socketIo = io("http://localhost:3001/");
+export const socketIo = io("https://gdoc-server.herokuapp.com/");
 
 export default function Home({ providers }) {
   const { data: session } = useSession();
@@ -22,8 +21,6 @@ export default function Home({ providers }) {
   const [documents, setDocuments] = useRecoilState(docsState);
 
   if (!session) return <Login providers={providers} />;
-
-  // console.log(session.user[`uid`]);
 
   const getData = (data) => {
     setDocuments(data);

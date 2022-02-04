@@ -3,6 +3,7 @@ import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import io from "socket.io-client";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 
 interface Props {}
 
@@ -27,7 +28,7 @@ const Editor = ({ id }) => {
   const { data: session } = useSession();
 
   useEffect(() => {
-    const s = io("http://localhost:3001/");
+    const s = io("https://gdoc-server.herokuapp.com/");
     setsocket(s);
     return () => {
       s.disconnect();
@@ -82,12 +83,6 @@ const Editor = ({ id }) => {
     };
   }, [socket, quill]);
 
-  // useEffect(() => {
-  //   if (socket !== null) return;
-  //   socket.on("test", (data) => {
-  //     console.log(data);
-  //   });
-  // }, [socket]);
   const wrapperRef = useCallback((wrapper) => {
     if (wrapper == null) return;
 
@@ -104,14 +99,39 @@ const Editor = ({ id }) => {
   }, []);
   return (
     <>
-      <input
-        className="px-4 text-sm text-gray-700 h-9 border-2 rounded-sm outline-none border-blue-700"
-        value={title}
-        placeholder="title"
-        onChange={(e) => {
-          settitle(e.target.value);
-        }}
-      />
+      <header className="flex justify-between items-center p-3 pb-1 ">
+        <span className="cursor-pointer">
+          <Image
+            src={
+              "https://www.gstatic.com/images/branding/product/1x/docs_2020q4_48dp.png"
+            }
+            height={50}
+            width={50}
+          />
+        </span>
+        <input
+          className="px-4 text-sm text-gray-700 h-8 border-2 rounded-md outline-none border-gray-200"
+          value={title}
+          placeholder="title"
+          onChange={(e) => {
+            settitle(e.target.value);
+          }}
+        />
+        <div className="flex-grow px-2">
+          <div className="flex items-center text-sm space-x-1 -ml-1 h-8 text-gray-500">
+            <p className="option">File</p>
+            <p className="option">Edit</p>
+            <p className="option">View</p>
+            <p className="option">Insert</p>
+            <p className="option">Format</p>
+            <p className="option">Tools</p>
+          </div>
+        </div>
+        <button className="bg-blue-500 w-28 p-2 rounded-md text-zinc-200 text-sm hover:bg-blue-600 hover:text-white">
+          share
+        </button>
+      </header>
+
       <div id="container" ref={wrapperRef}></div>
     </>
   );

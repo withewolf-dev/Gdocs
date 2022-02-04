@@ -15,8 +15,6 @@ const Body = () => {
 
   const [documents, setDocuments] = useRecoilState(docsState);
 
-  console.log(documents, "documents");
-
   const newDoc = (e) => {
     e.preventDefault();
     router.push(`/doc/${uuidv4()}`);
