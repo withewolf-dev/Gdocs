@@ -12,6 +12,7 @@ const Header = (props: Props) => {
     <div className="sticky top-0 z-50 flex items-center px-4 py-2 shadow-md bg-white">
       <MenuIcon className="h-5" />
       <Image
+        alt="iamge"
         src={
           "https://www.gstatic.com/images/branding/product/1x/docs_2020q4_48dp.png"
         }
@@ -37,6 +38,7 @@ const Header = (props: Props) => {
           e.preventDefault();
           signOut();
         }}
+        alt="image"
         src={session.user?.image}
         className="h-10 w-10 rounded-full object-fit cursor-pointer"
       />

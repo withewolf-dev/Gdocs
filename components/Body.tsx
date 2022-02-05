@@ -34,6 +34,7 @@ const Body = () => {
             className="relative h-52 w-40 border-2 cursor-pointer hover:border-blue-700"
           >
             <Image
+              alt="image"
               layout="fill"
               src={
                 "https://ssl.gstatic.com/docs/templates/thumbnails/docs-blank-googlecolors.png"

@@ -4,9 +4,6 @@ interface Props {}
 
 function Search({}: Props): ReactElement {
   return (
-    // <div>
-    //   <input placeholder="type" />
-    // </div>
     <div className="box w-[900px]">
       <div className="box-wrapper">
         <div className=" bg-white rounded flex items-center w-full p-3 shadow-sm border border-gray-200">

@@ -102,6 +102,7 @@ const Editor = ({ id }) => {
       <header className="flex justify-between items-center p-3 pb-1 ">
         <span className="cursor-pointer">
           <Image
+            alt="image"
             src={
               "https://www.gstatic.com/images/branding/product/1x/docs_2020q4_48dp.png"
             }

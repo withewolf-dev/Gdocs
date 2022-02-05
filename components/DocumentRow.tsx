@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { DocumentDuplicateIcon, TrashIcon } from "@heroicons/react/solid";
 import Link from "next/link";
-import io from "socket.io-client";
+import io, { Socket } from "socket.io-client";
 import { socketIo } from "../pages";
 
 const DocumentRow = ({ title, id }) => {
