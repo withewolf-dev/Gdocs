@@ -23,7 +23,6 @@
   "devDependencies": {
     "@types/node": "17.0.4",
     "@types/react": "17.0.38",
-    "@types/socket.io-client": "^3.0.0",
     "@types/uuid": "^8.3.4",
     "autoprefixer": "^10.4.0",
     "postcss": "^8.4.5",
