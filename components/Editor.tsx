@@ -4,6 +4,7 @@ import "quill/dist/quill.snow.css";
 import io from "socket.io-client";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Props {}
 
@@ -100,7 +101,7 @@ const Editor = ({ id }) => {
   return (
     <>
       <header className="flex justify-between items-center p-3 pb-1 ">
-        <span className="cursor-pointer">
+        <Link href={"/"}>
           <Image
             alt="image"
             src={
@@ -108,8 +109,9 @@ const Editor = ({ id }) => {
             }
             height={50}
             width={50}
+            className="cursor-pointer"
           />
-        </span>
+        </Link>
         <input
           className="px-4 text-sm text-gray-700 h-8 border-2 rounded-md outline-none border-gray-200"
           value={title}
