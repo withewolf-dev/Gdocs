@@ -5,7 +5,7 @@ export const docsState = atom({
   default: [], // default value (aka initial value)
 });
 
-// export const socketState = atom({
-//   key: "socketState",
-//   default:
-// });
+export const DocsLoadingState = atom({
+  key: "docsLoadingState", // unique ID (with respect to other atoms/selectors)
+  default: false, // default value (aka initial value)
+});

@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { LogoutIcon } from "@heroicons/react/solid";
+import { useRouter } from "next/router";
 
 interface Props {}
 
@@ -26,6 +27,8 @@ const Editor = ({ id }) => {
   const [socket, setsocket] = useState<any>();
   const [quill, setquill] = useState<any>();
   const [title, settitle] = useState("");
+
+  const router = useRouter();
 
   const { data: session } = useSession();
 
@@ -102,17 +105,19 @@ const Editor = ({ id }) => {
   return (
     <>
       <header className="flex justify-between items-center p-3 pb-1 ">
-        <Link href={"/"}>
-          <Image
-            alt="image"
-            src={
-              "https://www.gstatic.com/images/branding/product/1x/docs_2020q4_48dp.png"
-            }
-            height={50}
-            width={50}
-            className="cursor-pointer"
-          />
-        </Link>
+        <Image
+          onClick={(e) => {
+            e.preventDefault();
+            router.push("/");
+          }}
+          alt="image"
+          src={
+            "https://www.gstatic.com/images/branding/product/1x/docs_2020q4_48dp.png"
+          }
+          height={50}
+          width={50}
+          className="cursor-pointer"
+        />
         <input
           className="px-4 text-sm text-gray-700 h-8 border-2 rounded-md outline-none border-gray-200"
           value={title}

@@ -5,8 +5,8 @@ import { DotsVerticalIcon, FolderIcon } from "@heroicons/react/solid";
 import { v4 as uuidv4 } from "uuid";
 import { useRouter } from "next/router";
 import DocumentRow from "./DocumentRow";
-import { useRecoilState } from "recoil";
-import { docsState } from "../atoms/docs";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { DocsLoadingState, docsState } from "../atoms/docs";
 
 interface Props {}
 
@@ -14,13 +14,12 @@ const Body = () => {
   const router = useRouter();
 
   const [documents, setDocuments] = useRecoilState(docsState);
+  const docsLoadingState = useRecoilValue(DocsLoadingState);
 
   const newDoc = (e) => {
     e.preventDefault();
     router.push(`/doc/${uuidv4()}`);
   };
-
-  console.log(documents);
 
   return (
     <div>
@@ -54,12 +53,11 @@ const Body = () => {
             <p className="mr-12">Date Created </p>
             <FolderIcon className="h-4" />
           </div>
-          {documents &&
+          {!docsLoadingState &&
             documents.map((e) => (
               <DocumentRow title={e.title} id={e._id} key={e._id} />
             ))}
-
-          {documents.length === 0 && (
+          {docsLoadingState && (
             <div className="flex animate-pulse flex-row items-center h-full justify-center space-x-5">
               <div className="flex flex-col space-y-3">
                 <div className="w-80 bg-gray-300 h-6 rounded-md "></div>
@@ -69,6 +67,11 @@ const Body = () => {
                 <div className="w-80 bg-gray-300 h-6 rounded-md "></div>
                 <div className="w-80 bg-gray-300 h-6 rounded-md "></div>
               </div>
+            </div>
+          )}
+          {!docsLoadingState && documents.length === 0 && (
+            <div className="flex  flex-row items-center h-full justify-center space-x-5">
+              <h1 className="text-xl">NO DOCUMENT CREATED TILL DATE</h1>
             </div>
           )}
         </div>

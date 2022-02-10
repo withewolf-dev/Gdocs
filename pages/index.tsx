@@ -10,7 +10,7 @@ import Body from "../components/Body";
 import Header from "../components/Header";
 import Login from "../components/Login";
 import { useRecoilState } from "recoil";
-import { docsState } from "../atoms/docs";
+import { DocsLoadingState, docsState } from "../atoms/docs";
 import io from "socket.io-client";
 
 export const socketIo = io("https://gdoc-server.herokuapp.com/");
@@ -19,11 +19,13 @@ export default function Home({ providers }) {
   const { data: session } = useSession();
 
   const [documents, setDocuments] = useRecoilState(docsState);
+  const [docLoading, setdocLoading] = useRecoilState(DocsLoadingState);
 
   if (!session) return <Login providers={providers} />;
 
   const getData = (data) => {
     setDocuments(data);
+    setdocLoading(false);
   };
   const changeData = () => socketIo.emit("initial_data");
 
@@ -31,6 +33,7 @@ export default function Home({ providers }) {
     if (socketIo == null) return;
 
     session && socketIo.emit("initial_data", session.user[`uid`]);
+    setdocLoading(true);
     socketIo.on("get_data", getData);
     socketIo.on("change_data", changeData);
   }, [socketIo]);
