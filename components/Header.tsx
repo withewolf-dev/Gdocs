@@ -1,5 +1,5 @@
 import React from "react";
-import { MenuIcon, SearchIcon } from "@heroicons/react/solid";
+import { LogoutIcon, MenuIcon, SearchIcon } from "@heroicons/react/solid";
 import Image from "next/image";
 import { signOut, useSession } from "next-auth/react";
 
@@ -34,14 +34,20 @@ const Header = (props: Props) => {
         />
       </div>
       <img
-        onClick={(e) => {
-          e.preventDefault();
-          signOut();
-        }}
         alt="image"
         src={session.user?.image}
         className="h-10 w-10 rounded-full object-fit cursor-pointer"
       />
+      {/* <LogoutIcon
+        onClick={(e) => {
+          e.preventDefault();
+          signOut();
+        }}
+        className="h-10 w-10 p-2 text-gray-700 hover:bg-gray-300  bg-gray-100 ml-2 rounded-md cursor-pointer"
+      /> */}
+      <button className="bg-blue-600 w-24 p-2 rounded-md text-white text-sm hover:bg-blue-700 hover:text-white ml-2">
+        Logout
+      </button>
     </div>
   );
 };

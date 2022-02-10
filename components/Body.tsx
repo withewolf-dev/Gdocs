@@ -19,6 +19,9 @@ const Body = () => {
     e.preventDefault();
     router.push(`/doc/${uuidv4()}`);
   };
+
+  console.log(documents);
+
   return (
     <div>
       <section className="bg-[#F8F9FA] pb-10 px-10">
@@ -55,6 +58,19 @@ const Body = () => {
             documents.map((e) => (
               <DocumentRow title={e.title} id={e._id} key={e._id} />
             ))}
+
+          {documents.length === 0 && (
+            <div className="flex animate-pulse flex-row items-center h-full justify-center space-x-5">
+              <div className="flex flex-col space-y-3">
+                <div className="w-80 bg-gray-300 h-6 rounded-md "></div>
+                <div className="w-80 bg-gray-300 h-6 rounded-md "></div>
+                <div className="w-80 bg-gray-300 h-6 rounded-md "></div>
+                <div className="w-80 bg-gray-300 h-6 rounded-md "></div>
+                <div className="w-80 bg-gray-300 h-6 rounded-md "></div>
+                <div className="w-80 bg-gray-300 h-6 rounded-md "></div>
+              </div>
+            </div>
+          )}
         </div>
       </section>
     </div>

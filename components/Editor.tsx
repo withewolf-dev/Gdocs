@@ -5,6 +5,7 @@ import io from "socket.io-client";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
+import { LogoutIcon } from "@heroicons/react/solid";
 
 interface Props {}
 
