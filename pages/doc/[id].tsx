@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import { io } from "socket.io-client";
 import Login from "../../components/Login";
 import {
   getProviders,

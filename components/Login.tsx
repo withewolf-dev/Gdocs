@@ -1,9 +1,11 @@
 import { signIn } from "next-auth/react";
 import React from "react";
 
-interface Props {}
+interface Props {
+  providers?: any;
+}
 
-const Login = ({ providers }) => {
+const Login = ({ providers }: Props) => {
   return (
     <div className="flex flex-col items-center space-y-20 pt-48">
       <div>
